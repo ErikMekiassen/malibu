@@ -1,0 +1,5 @@
+spring:
+  application:
+      name=malibu-rest-api:
+  security:
+    oauth2:

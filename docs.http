@@ -1,0 +1,4 @@
+POST http://localhost:8080/realms/malibu/protocol/openid-connect/token
+Content-Type: application/x-www-form-urlencoded
+
+client_id=login-app&username=user1&password=admin&grant_type=password

@@ -1,0 +1,29 @@
+#docker-compose.yml
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:${POSTGRES_VERSION}
+    restart: always
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASS}
+    volumes:
+      - ./data: ${DATA_LOCATION}
+  keycloak:
+    image: quay.io/keycloak/keycloak:${KEYCLOAK_VERSION}
+    ports:
+      - "8080:8080"
+      - "8443:8443"
+    entrypoint: /opt/keycloak/bin/kc.sh start-dev
+    environment:
+      DB_VENDOR: postgres
+      DB_ADDR: postgres
+      DB_DATABASE: ${POSTGRES_DB}
+      DB_USER: ${POSTGRES_USER}
+      DB_PASSWORD: ${POSTGRES_PASS}
+    env_file:
+      - ./.env
+    depends_on:
+      - postgres
