@@ -27,3 +27,13 @@ services:
       - ./.env
     depends_on:
       - postgres
+
+POSTGRES_VERSION=16.2
+POSTGRES_DB=kc
+POSTGRES_USER=kc
+POSTGRES_PASS=kc
+DATA_LOCATION=/var/lib/postgresql/data
+
+# keycloak
+KEYCLOAK_VERSION=22.0.5
+KEYCLOAK_ADMIN=admin
